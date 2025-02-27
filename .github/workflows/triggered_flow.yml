@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print event payload
-        run: echo "${{ github.event.client_payload }}" # Access the payload
+        run: echo "${{ github.event.client_payload.updated-version }}" # Access the payload
