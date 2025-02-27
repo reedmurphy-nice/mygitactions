@@ -1,0 +1,12 @@
+name: Target Workflow
+
+on:
+  repository_dispatch:
+    types: [my-custom-event] # Replace with a descriptive event type
+
+jobs:
+  target_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print event payload
+        run: echo "${{ github.event.client_payload }}" # Access the payload
