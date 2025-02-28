@@ -2,7 +2,7 @@ name: Target Workflow
 
 on:
   repository_dispatch:
-    types: [on-demand-test] # Replace with a descriptive event type
+    types: [test-run] # Replace with a descriptive event type
 
 jobs:
   target_job:
