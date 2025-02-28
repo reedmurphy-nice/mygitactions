@@ -8,5 +8,19 @@ jobs:
   target_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Print event payload
-        run: echo "${{ github.event.client_payload.updated-version }}" # Access the payload
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Update parent version in pom.xml
+        run: |
+          updated_version="${{ github.event.client_payload.updated-version }}"
+          echo "Updating parent version to $updated_version"
+          sed -i '/<parent>/,/<\/parent>/ s|<version>.*</version>|<version>$updated_version</version>|' pom.xml
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add pom.xml
+          git commit -m "Update parent version to ${{ github.event.client_payload.updated-version }}"
+          git push
