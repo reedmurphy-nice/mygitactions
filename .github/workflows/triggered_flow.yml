@@ -17,7 +17,10 @@ jobs:
           echo "Updating parent version to $updated_version"
           sed -i '/<parent>/,/<\/parent>/ s|<version>.*</version>|<version>$updated_version</version>|' pom.xml
 
-      - name: Commit changes
+      - name: Commit pom parent version update
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.fdsfsdffwfw }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
