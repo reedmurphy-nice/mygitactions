@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.fdsfsdffwfw }}
 
       - name: Update parent version in pom.xml
         run: |
