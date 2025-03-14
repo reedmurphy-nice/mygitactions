@@ -18,9 +18,11 @@ jobs:
           sed -i '/<parent>/,/<\/parent>/ s|<version>.*</version>|<version>$updated_version</version>|' pom.xml
 
       - name: Commit pom parent version update
+        env:
+          GH_PAT: ${{ secrets.fdsfsdffwfw }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add pom.xml
           git commit -m "Update parent version to ${{ github.event.client_payload.updated-version }}"
-          git push
+          git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}.git
